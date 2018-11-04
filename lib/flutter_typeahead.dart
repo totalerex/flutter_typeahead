@@ -254,60 +254,60 @@ class TypeAheadFormField<T> extends FormField<String> {
   /// Creates a [TypeAheadFormField]
   TypeAheadFormField(
       {Key key,
-        String initialValue,
-        bool getImmediateSuggestions: false,
-        bool autovalidate: false,
-        FormFieldSetter<String> onSaved,
-        FormFieldValidator<String> validator,
-        ErrorBuilder errorBuilder,
-        WidgetBuilder noItemsFoundBuilder,
-        WidgetBuilder loadingBuilder,
-        Duration debounceDuration: const Duration(milliseconds: 300),
-        SuggestionsBoxDecoration suggestionsBoxDecoration:
-        const SuggestionsBoxDecoration(),
-        @required SuggestionSelectionCallback<T> onSuggestionSelected,
-        @required ItemBuilder<T> itemBuilder,
-        @required SuggestionsCallback<T> suggestionsCallback,
-        double suggestionsBoxVerticalOffset: 5.0,
-        this.textFieldConfiguration: const TextFieldConfiguration(),
-        AnimationTransitionBuilder transitionBuilder,
-        Duration animationDuration: const Duration(milliseconds: 500),
-        double animationStart: 0.25})
+      String initialValue,
+      bool getImmediateSuggestions: false,
+      bool autovalidate: false,
+      FormFieldSetter<String> onSaved,
+      FormFieldValidator<String> validator,
+      ErrorBuilder errorBuilder,
+      WidgetBuilder noItemsFoundBuilder,
+      WidgetBuilder loadingBuilder,
+      Duration debounceDuration: const Duration(milliseconds: 300),
+      SuggestionsBoxDecoration suggestionsBoxDecoration:
+          const SuggestionsBoxDecoration(),
+      @required SuggestionSelectionCallback<T> onSuggestionSelected,
+      @required ItemBuilder<T> itemBuilder,
+      @required SuggestionsCallback<T> suggestionsCallback,
+      double suggestionsBoxVerticalOffset: 5.0,
+      this.textFieldConfiguration: const TextFieldConfiguration(),
+      AnimationTransitionBuilder transitionBuilder,
+      Duration animationDuration: const Duration(milliseconds: 500),
+      double animationStart: 0.25})
       : assert(
-  initialValue == null || textFieldConfiguration.controller == null),
+            initialValue == null || textFieldConfiguration.controller == null),
         super(
-          key: key,
-          onSaved: onSaved,
-          validator: validator,
-          autovalidate: autovalidate,
-          initialValue: textFieldConfiguration.controller != null
-              ? textFieldConfiguration.controller.text
-              : (initialValue ?? ''),
-          builder: (FormFieldState<String> field) {
-            final _TypeAheadFormFieldState state = field;
+            key: key,
+            onSaved: onSaved,
+            validator: validator,
+            autovalidate: autovalidate,
+            initialValue: textFieldConfiguration.controller != null
+                ? textFieldConfiguration.controller.text
+                : (initialValue ?? ''),
+            builder: (FormFieldState<String> field) {
+              final _TypeAheadFormFieldState state = field;
 
-            return TypeAheadField(
-              getImmediateSuggestions: getImmediateSuggestions,
-              transitionBuilder: transitionBuilder,
-              errorBuilder: errorBuilder,
-              noItemsFoundBuilder: noItemsFoundBuilder,
-              loadingBuilder: loadingBuilder,
-              debounceDuration: debounceDuration,
-              suggestionsBoxDecoration: suggestionsBoxDecoration,
-              textFieldConfiguration: textFieldConfiguration.copyWith(
-                decoration: textFieldConfiguration.decoration
-                    .copyWith(errorText: state.errorText),
-                onChanged: state.didChange,
-                controller: state._effectiveController,
-              ),
-              suggestionsBoxVerticalOffset: suggestionsBoxVerticalOffset,
-              onSuggestionSelected: onSuggestionSelected,
-              itemBuilder: itemBuilder,
-              suggestionsCallback: suggestionsCallback,
-              animationStart: animationStart,
-              animationDuration: animationDuration,
-            );
-          });
+              return TypeAheadField(
+                getImmediateSuggestions: getImmediateSuggestions,
+                transitionBuilder: transitionBuilder,
+                errorBuilder: errorBuilder,
+                noItemsFoundBuilder: noItemsFoundBuilder,
+                loadingBuilder: loadingBuilder,
+                debounceDuration: debounceDuration,
+                suggestionsBoxDecoration: suggestionsBoxDecoration,
+                textFieldConfiguration: textFieldConfiguration.copyWith(
+                  decoration: textFieldConfiguration.decoration
+                      .copyWith(errorText: state.errorText),
+                  onChanged: state.didChange,
+                  controller: state._effectiveController,
+                ),
+                suggestionsBoxVerticalOffset: suggestionsBoxVerticalOffset,
+                onSuggestionSelected: onSuggestionSelected,
+                itemBuilder: itemBuilder,
+                suggestionsCallback: suggestionsCallback,
+                animationStart: animationStart,
+                animationDuration: animationDuration,
+              );
+            });
 
   @override
   _TypeAheadFormFieldState<T> createState() => _TypeAheadFormFieldState();
@@ -571,20 +571,20 @@ class TypeAheadField<T> extends StatefulWidget {
   /// Creates a [TypeAheadField]
   TypeAheadField(
       {Key key,
-        @required this.suggestionsCallback,
-        @required this.itemBuilder,
-        @required this.onSuggestionSelected,
-        this.textFieldConfiguration: const TextFieldConfiguration(),
-        this.suggestionsBoxDecoration: const SuggestionsBoxDecoration(),
-        this.debounceDuration: const Duration(milliseconds: 300),
-        this.loadingBuilder,
-        this.noItemsFoundBuilder,
-        this.errorBuilder,
-        this.transitionBuilder,
-        this.animationStart: 0.25,
-        this.animationDuration: const Duration(milliseconds: 500),
-        this.getImmediateSuggestions: false,
-        this.suggestionsBoxVerticalOffset: 5.0})
+      @required this.suggestionsCallback,
+      @required this.itemBuilder,
+      @required this.onSuggestionSelected,
+      this.textFieldConfiguration: const TextFieldConfiguration(),
+      this.suggestionsBoxDecoration: const SuggestionsBoxDecoration(),
+      this.debounceDuration: const Duration(milliseconds: 300),
+      this.loadingBuilder,
+      this.noItemsFoundBuilder,
+      this.errorBuilder,
+      this.transitionBuilder,
+      this.animationStart: 0.25,
+      this.animationDuration: const Duration(milliseconds: 500),
+      this.getImmediateSuggestions: false,
+      this.suggestionsBoxVerticalOffset: 5.0})
       : assert(suggestionsCallback != null),
         assert(itemBuilder != null),
         assert(onSuggestionSelected != null),
@@ -599,7 +599,7 @@ class TypeAheadField<T> extends StatefulWidget {
         super(key: key);
 
   @override
-  _TypeAheadFieldState<T> createState() => _TypeAheadFieldState<T>();
+  _TypeAheadFieldState createState() => _TypeAheadFieldState();
 }
 
 class _TypeAheadFieldState<T> extends State<TypeAheadField<T>> {
@@ -663,34 +663,34 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>> {
 
     this._suggestionsBoxController._overlayEntry =
         OverlayEntry(builder: (context) {
-          return Positioned(
-            width: size.width,
-            child: CompositedTransformFollower(
-              link: this._layerLink,
-              showWhenUnlinked: false,
-              offset:
+      return Positioned(
+        width: size.width,
+        child: CompositedTransformFollower(
+          link: this._layerLink,
+          showWhenUnlinked: false,
+          offset:
               Offset(0.0, size.height + widget.suggestionsBoxVerticalOffset),
-              child: _SuggestionsList<T>(
-                decoration: widget.suggestionsBoxDecoration,
-                debounceDuration: widget.debounceDuration,
-                controller: this._effectiveController,
-                loadingBuilder: widget.loadingBuilder,
-                noItemsFoundBuilder: widget.noItemsFoundBuilder,
-                errorBuilder: widget.errorBuilder,
-                transitionBuilder: widget.transitionBuilder,
-                suggestionsCallback: widget.suggestionsCallback,
-                animationDuration: widget.animationDuration,
-                animationStart: widget.animationStart,
-                getImmediateSuggestions: widget.getImmediateSuggestions,
-                onSuggestionSelected: (T selection) {
-                  this._effectiveFocusNode.unfocus();
-                  widget.onSuggestionSelected(selection);
-                },
-                itemBuilder: widget.itemBuilder,
-              ),
-            ),
-          );
-        });
+          child: _SuggestionsList<T>(
+            decoration: widget.suggestionsBoxDecoration,
+            debounceDuration: widget.debounceDuration,
+            controller: this._effectiveController,
+            loadingBuilder: widget.loadingBuilder,
+            noItemsFoundBuilder: widget.noItemsFoundBuilder,
+            errorBuilder: widget.errorBuilder,
+            transitionBuilder: widget.transitionBuilder,
+            suggestionsCallback: widget.suggestionsCallback,
+            animationDuration: widget.animationDuration,
+            animationStart: widget.animationStart,
+            getImmediateSuggestions: widget.getImmediateSuggestions,
+            onSuggestionSelected: (T selection) {
+              this._effectiveFocusNode.unfocus();
+              widget.onSuggestionSelected(selection);
+            },
+            itemBuilder: widget.itemBuilder,
+          ),
+        ),
+      );
+    });
   }
 
   @override
@@ -730,8 +730,8 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>> {
 class _SuggestionsList<T> extends StatefulWidget {
   final TextEditingController controller;
   final SuggestionSelectionCallback<T> onSuggestionSelected;
-  final SuggestionsCallback<T> suggestionsCallback;
-  final ItemBuilder<T> itemBuilder;
+  final SuggestionsCallback suggestionsCallback;
+  final ItemBuilder itemBuilder;
   final SuggestionsBoxDecoration decoration;
   final Duration debounceDuration;
   final WidgetBuilder loadingBuilder;
@@ -759,7 +759,7 @@ class _SuggestionsList<T> extends StatefulWidget {
   });
 
   @override
-  _SuggestionsListState<T> createState() => _SuggestionsListState<T>();
+  _SuggestionsListState createState() => _SuggestionsListState();
 }
 
 class _SuggestionsListState<T> extends State<_SuggestionsList<T>>
@@ -865,34 +865,34 @@ class _SuggestionsListState<T> extends State<_SuggestionsList<T>>
       child = widget.loadingBuilder != null
           ? widget.loadingBuilder(context)
           : Align(
-        alignment: Alignment.center,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: CircularProgressIndicator(),
-        ),
-      );
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: CircularProgressIndicator(),
+              ),
+            );
     } else if (this._error != null) {
       child = widget.errorBuilder != null
           ? widget.errorBuilder(context, this._error)
           : Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          'Error: ${this._error}',
-          style: TextStyle(color: Theme.of(context).errorColor),
-        ),
-      );
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Error: ${this._error}',
+                style: TextStyle(color: Theme.of(context).errorColor),
+              ),
+            );
     } else if (this._suggestions.length == 0) {
       child = widget.noItemsFoundBuilder != null
           ? widget.noItemsFoundBuilder(context)
           : Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Text(
-          'No Items Found!',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Theme.of(context).disabledColor, fontSize: 18.0),
-        ),
-      );
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                'No Items Found!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Theme.of(context).disabledColor, fontSize: 18.0),
+              ),
+            );
     } else {
       child = ListView(
         padding: EdgeInsets.zero,
@@ -912,11 +912,11 @@ class _SuggestionsListState<T> extends State<_SuggestionsList<T>>
     var animationChild = widget.transitionBuilder != null
         ? widget.transitionBuilder(context, child, this._animationController)
         : SizeTransition(
-      axisAlignment: -1.0,
-      sizeFactor: CurvedAnimation(
-          parent: this._animationController, curve: Curves.fastOutSlowIn),
-      child: child,
-    );
+            axisAlignment: -1.0,
+            sizeFactor: CurvedAnimation(
+                parent: this._animationController, curve: Curves.fastOutSlowIn),
+            child: child,
+          );
 
     var container = Material(
       elevation: widget.decoration.elevation,
@@ -926,9 +926,9 @@ class _SuggestionsListState<T> extends State<_SuggestionsList<T>>
       shadowColor: widget.decoration.shadowColor,
       child: widget.decoration.constraints != null
           ? ConstrainedBox(
-        constraints: widget.decoration.constraints,
-        child: animationChild,
-      )
+              constraints: widget.decoration.constraints,
+              child: animationChild,
+            )
           : animationChild,
     );
 
@@ -971,11 +971,11 @@ class SuggestionsBoxDecoration {
   /// Creates a SuggestionsBoxDecoration
   const SuggestionsBoxDecoration(
       {this.elevation: 4.0,
-        this.color,
-        this.shape,
-        this.borderRadius,
-        this.shadowColor: const Color(0xFF000000),
-        this.constraints})
+      this.color,
+      this.shape,
+      this.borderRadius,
+      this.shadowColor: const Color(0xFF000000),
+      this.constraints})
       : assert(shadowColor != null),
         assert(elevation != null);
 }
@@ -1127,57 +1127,57 @@ class TextFieldConfiguration<T> {
   /// Creates a TextFieldConfiguration
   const TextFieldConfiguration(
       {this.decoration: const InputDecoration(),
-        this.style,
-        this.controller,
-        this.onChanged,
-        this.onSubmitted,
-        this.obscureText: false,
-        this.maxLengthEnforced: true,
-        this.maxLength,
-        this.maxLines: 1,
-        this.autocorrect: true,
-        this.inputFormatters,
-        this.autofocus: false,
-        this.keyboardType: TextInputType.text,
-        this.enabled: true,
-        this.textAlign: TextAlign.start,
-        this.focusNode,
-        this.cursorColor,
-        this.cursorRadius,
-        this.textInputAction,
-        this.textCapitalization: TextCapitalization.none,
-        this.cursorWidth: 2.0,
-        this.keyboardAppearance,
-        this.onEditingComplete,
-        this.scrollPadding: const EdgeInsets.all(20.0)});
+      this.style,
+      this.controller,
+      this.onChanged,
+      this.onSubmitted,
+      this.obscureText: false,
+      this.maxLengthEnforced: true,
+      this.maxLength,
+      this.maxLines: 1,
+      this.autocorrect: true,
+      this.inputFormatters,
+      this.autofocus: false,
+      this.keyboardType: TextInputType.text,
+      this.enabled: true,
+      this.textAlign: TextAlign.start,
+      this.focusNode,
+      this.cursorColor,
+      this.cursorRadius,
+      this.textInputAction,
+      this.textCapitalization: TextCapitalization.none,
+      this.cursorWidth: 2.0,
+      this.keyboardAppearance,
+      this.onEditingComplete,
+      this.scrollPadding: const EdgeInsets.all(20.0)});
 
   /// Copies the [TextFieldConfiguration] and only changes the specified
   /// properties
   copyWith(
       {InputDecoration decoration,
-        TextStyle style,
-        TextEditingController controller,
-        ValueChanged<T> onChanged,
-        ValueChanged<T> onSubmitted,
-        bool obscureText,
-        bool maxLengthEnforced,
-        int maxLength,
-        int maxLines,
-        bool autocorrect,
-        List<TextInputFormatter> inputFormatters,
-        bool autofocus,
-        TextInputType keyboardType,
-        bool enabled,
-        TextAlign textAlign,
-        FocusNode focusNode,
-        Color cursorColor,
-        Radius cursorRadius,
-        double cursorWidth,
-        Brightness keyboardAppearance,
-        VoidCallback onEditingComplete,
-        EdgeInsets scrollPadding,
-        TextCapitalization textCapitalization,
-        TextInputAction textInputAction}) {
+      TextStyle style,
+      TextEditingController controller,
+      ValueChanged<T> onChanged,
+      ValueChanged<T> onSubmitted,
+      bool obscureText,
+      bool maxLengthEnforced,
+      int maxLength,
+      int maxLines,
+      bool autocorrect,
+      List<TextInputFormatter> inputFormatters,
+      bool autofocus,
+      TextInputType keyboardType,
+      bool enabled,
+      TextAlign textAlign,
+      FocusNode focusNode,
+      Color cursorColor,
+      Radius cursorRadius,
+      double cursorWidth,
+      Brightness keyboardAppearance,
+      VoidCallback onEditingComplete,
+      EdgeInsets scrollPadding,
+      TextCapitalization textCapitalization,
+      TextInputAction textInputAction}) {
     return TextFieldConfiguration(
         decoration: decoration ?? this.decoration,
         style: style ?? this.style,
