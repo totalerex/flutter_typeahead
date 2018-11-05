@@ -628,8 +628,8 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>> {
 
     this._suggestionsBoxController = _SuggestionsBoxController(context);
 
-    (() async {
-      await this._initOverlayEntry();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      this._initOverlayEntry();
 
       this._effectiveFocusNode.addListener(() {
         if (_effectiveFocusNode.hasFocus) {
@@ -643,34 +643,15 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>> {
       if (this._effectiveFocusNode.hasFocus) {
         this._suggestionsBoxController.open();
       }
-    })();
+    });
+
   }
 
-  Future<void> _initOverlayEntry() async {
+  _initOverlayEntry()  {
     RenderBox renderBox = context.findRenderObject();
 
-    while (renderBox == null) {
-      await Future.delayed(Duration(milliseconds: 10));
-
-      renderBox = context.findRenderObject();
-    }
-
-    while (!renderBox.hasSize) {
-      await Future.delayed(Duration(milliseconds: 10));
-    }
 
     var size = renderBox.paintBounds.size;
-
-
-    final RenderBox aheadField = context.findRenderObject();
-    final RenderBox overlay = Overlay.of(context).context.findRenderObject();
-    final RelativeRect position = RelativeRect.fromRect(
-      Rect.fromPoints(
-        aheadField.localToGlobal(Offset.zero, ancestor: overlay),
-        aheadField.localToGlobal(aheadField.size.bottomRight(Offset.zero), ancestor: overlay),
-      ),
-      Offset.zero & overlay.size,
-    );
 
     this._suggestionsBoxController._overlayEntry =
         OverlayEntry(builder: (context) {
@@ -693,8 +674,7 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>> {
                 animationDuration: widget.animationDuration,
                 animationStart: widget.animationStart,
                 getImmediateSuggestions: widget.getImmediateSuggestions,
-                maxHeight: MediaQuery.of(context).size.height
-                    - position.top - size.height*2 - widget.suggestionsBoxVerticalOffset,
+                maxHeight: size.height*4,
                 onSuggestionSelected: (T selection) {
                   this._effectiveFocusNode.unfocus();
                   widget.onSuggestionSelected(selection);
